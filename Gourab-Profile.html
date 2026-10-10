@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b1120" />
+  <meta name="description" content="Personal portfolio of Gourab Mech, Computer Science student at Dhemaji Engineering College." />
+  <title>Gourab Mech | Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --surface: rgba(17, 27, 48, .78);
+      --surface-strong: #111b30;
+      --text: #eef3ff;
+      --muted: #a7b4cc;
+      --line: rgba(180, 199, 231, .16);
+      --accent: #7c9cff;
+      --accent-2: #64e4c2;
+      --max: 1080px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 10% 0%, rgba(70, 101, 190, .22), transparent 42%),
+        radial-gradient(ellipse at 95% 35%, rgba(40, 190, 161, .12), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font: 16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 4px; }
+    .wrap { width: min(var(--max), calc(100% - 40px)); margin-inline: auto; }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(11, 17, 32, .78);
+      border-bottom: 1px solid var(--line);
+    }
+    nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-weight: 800; letter-spacing: -.04em; font-size: 1.1rem; }
+    .brand span { color: var(--accent-2); }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 24px; color: var(--muted); font-size: .93rem; }
+    .nav-links a:hover { color: var(--text); }
+    .hero { padding: 100px 0 84px; display: grid; grid-template-columns: 1.3fr .7fr; align-items: center; gap: 60px; min-height: 560px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--accent-2); text-transform: uppercase; letter-spacing: .16em; font-size: .75rem; font-weight: 750; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-2); box-shadow: 0 0 18px rgba(100,228,194,.75); }
+    h1 { font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1.02; letter-spacing: -.065em; margin: 20px 0; }
+    h1 .gradient { background: linear-gradient(100deg, #eef3ff 15%, #9eb5ff 55%, #64e4c2 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    .typing-copy { display: inline; }
+    .typing-cursor { display: inline-block; margin-left: .08em; color: var(--accent-2); font-weight: 400; animation: typing-caret .78s steps(1, end) infinite; text-shadow: 0 0 18px rgba(100,228,194,.65); }
+    @keyframes typing-caret { 0%, 48% { opacity: 1; } 49%, 100% { opacity: 0; } }
+    .lead { color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.2rem); max-width: 620px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 12px 18px; border: 1px solid var(--line); border-radius: 12px; font-weight: 700; transition: transform .2s, border-color .2s, background .2s; }
+    .btn:hover { transform: translateY(-2px); border-color: rgba(124,156,255,.65); }
+    .btn.primary { color: #091323; background: linear-gradient(120deg, var(--accent), var(--accent-2)); border: 0; }
+    .profile-card { position: relative; padding: 28px; border: 1px solid var(--line); border-radius: 26px; background: linear-gradient(145deg, rgba(26, 40, 69, .92), rgba(15, 24, 42, .86)); box-shadow: 0 24px 80px rgba(0,0,0,.2); }
+    .profile-card::before { content: ""; position: absolute; width: 140px; height: 140px; right: -24px; top: -26px; border-radius: 50%; background: rgba(100,228,194,.1); filter: blur(3px); pointer-events: none; }
+    .monogram { width: 86px; height: 86px; display: grid; place-items: center; border-radius: 24px; background: linear-gradient(135deg, #7c9cff, #64e4c2); color: #0b1120; font-size: 2rem; font-weight: 900; letter-spacing: -.07em; }
+    .profile-card h2 { margin: 22px 0 2px; font-size: 1.55rem; }
+    .profile-card .sub { color: var(--muted); margin: 0; }
+    .mini-line { height: 1px; background: var(--line); margin: 22px 0; }
+    .detail { display: flex; align-items: flex-start; gap: 12px; margin: 12px 0; color: var(--muted); overflow-wrap: anywhere; }
+    .detail strong { color: var(--text); font-weight: 600; display: block; }
+    .detail .ico { color: var(--accent-2); width: 22px; flex: 0 0 22px; display: inline-flex; justify-content: center; align-items: center; }
+    .detail .ico svg, .btn svg { fill: currentColor; }
+    section { padding: 34px 0 70px; scroll-margin-top: 95px; }
+    .section-heading { margin-bottom: 26px; }
+    .section-heading .eyebrow { margin-bottom: 8px; }
+    h2.section-title { font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.15; letter-spacing: -.045em; margin: 0; }
+    .section-intro { color: var(--muted); max-width: 660px; margin: 12px 0 0; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .card { padding: 25px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); }
+    .card .card-icon { display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--line); margin-bottom: 18px; padding: 6px; }
+    .card .card-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .card-icon-link { display: inline-flex; border-radius: 13px; }
+    .education-link { color: inherit; text-decoration: none; transition: color .25s ease, text-shadow .25s ease; }
+    .education-link:hover { color: var(--accent-2); text-shadow: 0 0 18px rgba(100,228,194,.22); }
+    .explore-link { display: inline-flex; margin-top: 15px; color: var(--accent-2); font-weight: 750; font-size: .92rem; gap: 7px; }
+    .explore-link span { transition: transform .25s ease; }
+    .explore-link:hover span { transform: translateX(4px); }
+    .card h3 { margin: 0 0 8px; font-size: 1.15rem; }
+    .card p { color: var(--muted); margin: 0; }
+    .date { color: var(--accent-2); font-size: .86rem; font-weight: 700; margin-bottom: 8px; }
+    .contact-panel { display: flex; justify-between: space-between; align-items: center; gap: 28px; padding: 30px; border-radius: 22px; border: 1px solid var(--line); background: linear-gradient(120deg, rgba(124,156,255,.12), rgba(100,228,194,.07)); }
+    .contact-panel h3 { font-size: 1.5rem; margin: 0 0 6px; }
+    .contact-panel p { color: var(--muted); margin: 0; }
+    footer { border-top: 1px solid var(--line); color: var(--muted); padding: 25px 0; font-size: .9rem; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; gap: 35px; padding: 68px 0 55px; min-height: auto; }
+      .profile-card { max-width: 520px; }
+      .grid { grid-template-columns: 1fr; }
+      .contact-panel { align-items: flex-start; flex-direction: column; }
+      nav { align-items: flex-start; flex-direction: column; justify-content: center; padding: 16px 0; gap: 10px; }
+      .nav-links { gap: 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
+
+    /* ===== EXTRA MOTION: cosmic backdrop, glass glow, and playful interactions ===== */
+    body { isolation: isolate; overflow-x: hidden; }
+    header, main, footer { position: relative; z-index: 1; }
+    #particle-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: .72; }
+    .scroll-progress { position: fixed; inset: 0 auto auto 0; height: 3px; width: 0; z-index: 1000; background: linear-gradient(90deg, #7c9cff, #b18cff, #64e4c2); box-shadow: 0 0 16px rgba(100,228,194,.8); }
+    .cursor-glow { position: fixed; left: -300px; top: -300px; width: 300px; height: 300px; border-radius: 50%; pointer-events: none; z-index: 0; background: radial-gradient(circle, rgba(124,156,255,.11), rgba(100,228,194,.055) 35%, transparent 70%); transform: translate(-50%, -50%); transition: opacity .25s; will-change: left, top; }
+    .brand { position: relative; }
+    .brand span { display: inline-block; animation: dot-hop 2.2s ease-in-out infinite; }
+    .nav-links a { position: relative; transition: color .25s ease, text-shadow .25s ease; }
+    .nav-links a::after { content: ""; position: absolute; height: 2px; left: 0; right: 100%; bottom: -7px; border-radius: 10px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: right .28s ease; }
+    .nav-links a:hover { color: var(--text); text-shadow: 0 0 18px rgba(124,156,255,.55); }
+    .nav-links a:hover::after, .nav-links a:focus-visible::after { right: 0; }
+    .hero > div:first-child { animation: hero-arrive .95s cubic-bezier(.18,.8,.25,1) both; }
+    .hero .eyebrow { animation: fade-up .75s .1s both; }
+    h1 .gradient { background-size: 220% auto; animation: gradient-sweep 5s ease-in-out infinite; filter: drop-shadow(0 0 22px rgba(124,156,255,.12)); }
+    .dot { animation: signal-pulse 1.8s ease-in-out infinite; }
+    .profile-card { transform-style: preserve-3d; will-change: transform; animation: card-float 6s ease-in-out infinite; transition: border-color .35s ease, box-shadow .35s ease; overflow: hidden; }
+    .profile-card::after { content: ""; position: absolute; inset: -1px; pointer-events: none; border-radius: inherit; padding: 1px; background: linear-gradient(125deg, transparent 15%, rgba(124,156,255,.65), rgba(100,228,194,.55), transparent 78%); background-size: 260% 260%; animation: border-drift 8s linear infinite; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+    .profile-card:hover { border-color: rgba(124,156,255,.55); box-shadow: 0 28px 90px rgba(35,72,145,.25), 0 0 35px rgba(100,228,194,.08); }
+    .monogram { position: relative; overflow: hidden; animation: monogram-float 4.5s ease-in-out infinite; box-shadow: 0 10px 30px rgba(100,228,194,.13); background-size: 180% 180%; }
+    .monogram::after { content: ""; position: absolute; inset: -60% auto -60% -45%; width: 35%; transform: rotate(25deg); background: rgba(255,255,255,.45); filter: blur(5px); animation: logo-shine 4.2s ease-in-out infinite; }
+    .btn { position: relative; isolation: isolate; overflow: hidden; transition: transform .25s cubic-bezier(.2,.8,.2,1), border-color .25s, box-shadow .25s; }
+    .btn::before { content: ""; position: absolute; z-index: -1; inset: 0; transform: translateX(-120%) skewX(-20deg); background: linear-gradient(100deg, transparent, rgba(255,255,255,.24), transparent); transition: transform .6s ease; }
+    .btn:hover { transform: translateY(-4px) scale(1.025); border-color: rgba(124,156,255,.75); box-shadow: 0 9px 28px rgba(88,123,224,.18); }
+    .btn:hover::before { transform: translateX(120%) skewX(-20deg); }
+    .btn.primary { box-shadow: 0 7px 24px rgba(100,228,194,.10); }
+    .btn.primary:hover { box-shadow: 0 10px 34px rgba(100,228,194,.23); }
+    .section-heading { transform-origin: left center; }
+    .card { position: relative; overflow: hidden; isolation: isolate; transform: translateZ(0); transition: transform .35s cubic-bezier(.2,.8,.2,1), border-color .3s ease, box-shadow .35s ease, background .35s ease; }
+    .card::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; background: radial-gradient(330px circle at var(--mx, 50%) var(--my, 50%), rgba(124,156,255,.13), transparent 55%); transition: opacity .3s ease; }
+    .card::after { content: ""; position: absolute; top: -60%; left: -80%; width: 45%; height: 220%; pointer-events: none; transform: rotate(20deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,.045), transparent); transition: left .7s ease; }
+    .card:hover { transform: translateY(-9px) scale(1.012); border-color: rgba(100,228,194,.4); box-shadow: 0 20px 55px rgba(0,0,0,.25), 0 0 30px rgba(100,228,194,.07); }
+    .card:hover::before { opacity: 1; }
+    .card:hover::after { left: 140%; }
+    .card .card-icon { transition: transform .4s cubic-bezier(.2,.8,.2,1), border-color .3s, box-shadow .3s; }
+    .card:hover .card-icon { transform: rotate(-5deg) scale(1.08); border-color: rgba(100,228,194,.45); box-shadow: 0 0 25px rgba(100,228,194,.12); }
+    .contact-panel { position: relative; overflow: hidden; justify-content: space-between; }
+    .contact-panel::before { content: ""; position: absolute; width: 280px; height: 280px; right: 8%; top: -210px; border-radius: 50%; background: rgba(124,156,255,.15); filter: blur(40px); animation: orb-drift 8s ease-in-out infinite alternate; pointer-events: none; }
+    .contact-panel > * { position: relative; z-index: 1; }
+    .reveal { opacity: 0; transform: translateY(28px) scale(.985); transition: opacity .75s ease, transform .75s cubic-bezier(.18,.7,.2,1); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0) scale(1); }
+    .grid .card:nth-child(2) { transition-delay: .12s; }
+    .back-to-top { position: fixed; right: 22px; bottom: 22px; z-index: 20; width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid rgba(180,199,231,.25); border-radius: 15px; background: rgba(17,27,48,.88); color: var(--text); font: inherit; font-size: 1.25rem; cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(12px) rotate(-8deg); transition: opacity .25s, visibility .25s, transform .25s, border-color .25s, box-shadow .25s; backdrop-filter: blur(14px); }
+    .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0) rotate(0); }
+    .back-to-top:hover { border-color: var(--accent-2); box-shadow: 0 0 26px rgba(100,228,194,.2); transform: translateY(-4px); }
+    @keyframes hero-arrive { from { opacity: 0; transform: translateY(28px); filter: blur(6px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+    @keyframes fade-up { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes gradient-sweep { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes signal-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(100,228,194,.35), 0 0 18px rgba(100,228,194,.75); } 50% { box-shadow: 0 0 0 8px rgba(100,228,194,0), 0 0 28px rgba(100,228,194,1); } }
+    @keyframes card-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -7px; } }
+    @keyframes monogram-float { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-5px) rotate(2deg); } }
+    @keyframes logo-shine { 0%, 55% { left: -45%; } 85%, 100% { left: 130%; } }
+    @keyframes border-drift { 0% { background-position: 0% 0%; } 100% { background-position: 260% 260%; } }
+    @keyframes orb-drift { from { transform: translate(0, 0) scale(1); } to { transform: translate(-90px, 60px) scale(1.35); } }
+    @keyframes dot-hop { 0%, 100% { transform: translateY(0); } 45% { transform: translateY(-3px); } 60% { transform: translateY(0); } }
+    @media (max-width: 760px) {
+      #particle-canvas { opacity: .42; }
+      .cursor-glow { display: none; }
+      .profile-card { animation-duration: 8s; }
+      .back-to-top { right: 14px; bottom: 14px; }
+    }
+    @media (hover: none), (pointer: coarse) { .card:hover { transform: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      #particle-canvas, .cursor-glow { display: none !important; }
+    }
+
+
+    /* Single-file page switching */
+    #homeView { min-height: 100vh; }
+    #institutionView { position: relative; z-index: 1; width: 100%; min-height: 100vh; }
+    #institutionView[hidden] { display: none !important; }
+    #institutionFrame { display: block; width: 100%; min-height: 100vh; height: 100vh; border: 0; background: var(--bg); }
+
+  </style>
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top" title="Back to top">↑</button>
+  <div id="homeView">
+  <header>
+    <nav class="wrap" aria-label="Main navigation">
+      <a class="brand" href="#home">Gourab<span>.</span></a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero" id="home" aria-labelledby="hero-title">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> Computer Science Student</div>
+          <h1 id="hero-title" aria-label="Hello, I'm Gourab Mech.">
+            <span class="sr-only">Hello, I'm Gourab Mech.</span>
+            <span class="typing-copy" aria-hidden="true"><span id="typing-intro"></span><br><span class="gradient" id="typing-name"></span><span class="typing-cursor">▍</span></span>
+          </h1>
+          <p class="lead">A Computer Science and Engineering student at Dhemaji Engineering College, building a foundation for a future in technology.</p>
+          <div class="actions">
+            <a class="btn primary" href="#contact">Get in touch <span aria-hidden="true">↗</span></a>
+            <a class="btn" href="https://www.linkedin.com/in/gourab-mech-833027369" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+              LinkedIn <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+        <aside class="profile-card" aria-label="Profile summary">
+          <div class="monogram" aria-hidden="true">GM</div>
+          <h2>Gourab Mech</h2>
+          <p class="sub">B.Tech · Computer Science</p>
+          <div class="mini-line"></div>
+          <div class="detail"><span class="ico" aria-hidden="true">⌖</span><div><strong>Based in</strong>Golaghat, Assam, India</div></div>
+          <div class="detail"><span class="ico" aria-hidden="true">✉</span><div><strong>Email</strong><a href="mailto:gourabmechh@gmail.com">gourabmechh@gmail.com</a></div></div>
+          <div class="detail">
+            <span class="ico" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+            </span>
+            <div><strong>Professional profile</strong><a href="https://www.linkedin.com/in/gourab-mech-833027369" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about" aria-labelledby="about-title">
+        <div class="section-heading">
+          <div class="eyebrow">A little about me</div>
+          <h2 class="section-title" id="about-title">Curious by nature. Learning by building.</h2>
+          <p class="section-intro">I’m currently pursuing a Bachelor of Technology in Computer Science. This portfolio is a starting point to share my academic journey, interests, and future work.</p>
+        </div>
+      </section>
+
+      <section id="education" aria-labelledby="education-title">
+        <div class="section-heading">
+          <div class="eyebrow">Academic background</div>
+          <h2 class="section-title" id="education-title">Education</h2>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <a class="card-icon-link" href="#portfolio-dec" aria-label="Learn more about Dhemaji Engineering College">
+              <div class="card-icon">
+                <img src="https://dec.ac.in/uploads/images/dec_logo.png" alt="Dhemaji Engineering College Logo" loading="lazy" />
+              </div>
+            </a>
+            <div class="date">August 2025 – August 2029</div>
+            <h3>Bachelor of Technology, Computer Science</h3>
+            <p><a class="education-link" href="#portfolio-dec">Dhemaji Engineering College (DEC) ↗</a></p>
+            <a class="explore-link" href="#portfolio-dec">Explore college <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="card">
+            <a class="card-icon-link" href="#portfolio-jnv" aria-label="Learn more about Jawahar Navodaya Vidyalaya, Golaghat">
+              <div class="card-icon">
+                <img src="https://jnvidyalaya.co.in/img/logo.png" alt="Navodaya Vidyalaya Samiti Logo" loading="lazy" />
+              </div>
+            </a>
+            <h3><a class="education-link" href="#portfolio-jnv">Jawahar Navodaya Vidyalaya (JNV) ↗</a></h3>
+            <p>School education · Golaghat, Assam</p>
+            <a class="explore-link" href="#portfolio-jnv">Explore school <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-title">
+        <div class="contact-panel">
+          <div>
+            <div class="eyebrow">Let’s connect</div>
+            <h3 id="contact-title">Have an opportunity or idea?</h3>
+            <p>Feel free to reach out by email or connect with me on LinkedIn.</p>
+          </div>
+          <div class="actions" style="margin-top:0">
+            <a class="btn primary" href="mailto:gourabmechh@gmail.com">Email me ↗</a>
+            <a class="btn" href="https://www.linkedin.com/in/gourab-mech-833027369" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+              LinkedIn ↗
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="year"></span> Gourab Mech</span>
+      <span>Designed with care.</span>
+    </div>
+  </footer>
+  </div><!-- /homeView -->
+  <div id="institutionView" hidden aria-label="Institution information page">
+    <iframe id="institutionFrame" title="Institution information" loading="eager"></iframe>
+  </div>
+  <script>
+    (() => {
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const progress = document.getElementById('scrollProgress');
+      const backToTop = document.getElementById('backToTop');
+      const cursorGlow = document.getElementById('cursorGlow');
+      const canvas = document.getElementById('particle-canvas');
+      const ctx = canvas?.getContext('2d');
+      let width = 0, height = 0, particles = [], raf = 0;
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Type the hero greeting in two lines, then keep a softly blinking cursor.
+      const typingIntro = document.getElementById('typing-intro');
+      const typingName = document.getElementById('typing-name');
+      const typingCursor = document.querySelector('.typing-cursor');
+      const introText = "Hello, I'm";
+      const nameText = 'Gourab Mech.';
+      if (typingIntro && typingName) {
+        if (reducedMotion) {
+          typingIntro.textContent = introText;
+          typingName.textContent = nameText;
+          if (typingCursor) typingCursor.hidden = true;
+        } else {
+          let introIndex = 0;
+          let nameIndex = 0;
+          const typeIntro = () => {
+            if (introIndex < introText.length) {
+              typingIntro.textContent += introText.charAt(introIndex++);
+              window.setTimeout(typeIntro, 82);
+            } else {
+              window.setTimeout(typeName, 230);
+            }
+          };
+          const typeName = () => {
+            if (nameIndex < nameText.length) {
+              typingName.textContent += nameText.charAt(nameIndex++);
+              window.setTimeout(typeName, 105);
+            }
+          };
+          window.setTimeout(typeIntro, 420);
+        }
+      }
+
+      // Scroll meter + return-to-top button.
+      const updateScroll = () => {
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+        if (progress) progress.style.width = `${pct}%`;
+        backToTop?.classList.toggle('visible', window.scrollY > 420);
+      };
+      window.addEventListener('scroll', updateScroll, { passive: true });
+      updateScroll();
+      backToTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' }));
+
+      // Gentle reveal effects: content remains visible if IntersectionObserver is unavailable.
+      const revealTargets = document.querySelectorAll('.section-heading, .card, .contact-panel, .profile-card');
+      if (!reducedMotion && 'IntersectionObserver' in window) {
+        revealTargets.forEach(el => el.classList.add('reveal'));
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+        revealTargets.forEach(el => observer.observe(el));
+      }
+
+      // Cursor halo and subtle card spotlight.
+      if (!reducedMotion && window.matchMedia('(pointer: fine)').matches) {
+        window.addEventListener('pointermove', e => {
+          if (cursorGlow) {
+            cursorGlow.style.left = `${e.clientX}px`;
+            cursorGlow.style.top = `${e.clientY}px`;
+          }
+          document.querySelectorAll('.card').forEach(card => {
+            const r = card.getBoundingClientRect();
+            if (e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) {
+              card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+              card.style.setProperty('--my', `${e.clientY - r.top}px`);
+            }
+          });
+        }, { passive: true });
+      }
+
+      // Tilting profile card, enabled only for a mouse/trackpad.
+      const tiltCard = document.querySelector('.profile-card');
+      if (tiltCard && !reducedMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        tiltCard.addEventListener('pointermove', e => {
+          const r = tiltCard.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width - 0.5;
+          const y = (e.clientY - r.top) / r.height - 0.5;
+          tiltCard.style.animationPlayState = 'paused';
+          tiltCard.style.transform = `perspective(1000px) rotateX(${-y * 7}deg) rotateY(${x * 9}deg) translateY(-3px)`;
+        });
+        tiltCard.addEventListener('pointerleave', () => {
+          tiltCard.style.transform = '';
+          tiltCard.style.animationPlayState = '';
+        });
+      }
+
+      // Lightweight ambient particle network. Disabled for reduced-motion preferences.
+      if (!reducedMotion && canvas && ctx) {
+        const resize = () => {
+          const dpr = Math.min(window.devicePixelRatio || 1, 1.7);
+          width = window.innerWidth;
+          height = window.innerHeight;
+          canvas.width = Math.round(width * dpr);
+          canvas.height = Math.round(height * dpr);
+          canvas.style.width = `${width}px`;
+          canvas.style.height = `${height}px`;
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          const count = Math.min(78, Math.max(30, Math.floor(width / 17)));
+          particles = Array.from({ length: count }, () => ({
+            x: Math.random() * width, y: Math.random() * height,
+            vx: (Math.random() - .5) * .34, vy: (Math.random() - .5) * .34,
+            r: Math.random() * 1.6 + .55, phase: Math.random() * Math.PI * 2
+          }));
+        };
+        const draw = () => {
+          ctx.clearRect(0, 0, width, height);
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            p.x += p.vx; p.y += p.vy; p.phase += .012;
+            if (p.x < -8) p.x = width + 8;
+            if (p.x > width + 8) p.x = -8;
+            if (p.y < -8) p.y = height + 8;
+            if (p.y > height + 8) p.y = -8;
+            const alpha = .42 + (Math.sin(p.phase) + 1) * .17;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(151, 186, 255, ${alpha})`;
+            ctx.fill();
+            for (let j = i + 1; j < particles.length; j++) {
+              const q = particles[j];
+              const dx = p.x - q.x, dy = p.y - q.y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+              if (distance < 112) {
+                const lineAlpha = (1 - distance / 112) * .17;
+                ctx.strokeStyle = `rgba(100, 228, 194, ${lineAlpha})`;
+                ctx.lineWidth = .7;
+                ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+              }
+            }
+          }
+          raf = window.requestAnimationFrame(draw);
+        };
+        resize();
+        draw();
+        window.addEventListener('resize', resize, { passive: true });
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) { cancelAnimationFrame(raf); }
+          else if (!reducedMotion) { cancelAnimationFrame(raf); draw(); }
+        });
+      }
+    })();
+  </script>
+
+  <script>
+    (() => {
+      const homeView = document.getElementById('homeView');
+      const institutionView = document.getElementById('institutionView');
+      const frame = document.getElementById('institutionFrame');
+      const pages = { jnv: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta name=\"theme-color\" content=\"#0b1120\">\n<title>Jawahar Navodaya Vidyalaya, Golaghat | Gourab Mech</title><meta name=\"description\" content=\"Information and photographs of Jawahar Navodaya Vidyalaya, Golaghat, Assam.\">\n<style>\n:root{--bg:#0b1120;--surface:rgba(17,27,48,.78);--text:#eef3ff;--muted:#a7b4cc;--line:rgba(180,199,231,.16);--accent:#7c9cff;--accent2:#64e4c2;--max:1080px}\n*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;isolation:isolate;overflow-x:hidden;color:var(--text);font:16px/1.7 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,\"Segoe UI\",sans-serif;background:radial-gradient(ellipse at 10% 0%,rgba(70,101,190,.22),transparent 42%),radial-gradient(ellipse at 95% 35%,rgba(40,190,161,.12),transparent 35%),var(--bg)}\na{color:inherit;text-decoration:none}a:focus-visible{outline:3px solid var(--accent2);outline-offset:4px}.wrap{width:min(var(--max),calc(100% - 40px));margin-inline:auto}\n#particle-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.62}.scroll-progress{position:fixed;top:0;left:0;width:0;height:3px;z-index:100;background:linear-gradient(90deg,var(--accent),#b18cff,var(--accent2));box-shadow:0 0 16px #64e4c288}header,main,footer{position:relative;z-index:1}header{position:sticky;top:0;z-index:10;background:rgba(11,17,32,.79);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{font-size:1.1rem;font-weight:850;letter-spacing:-.04em}.brand span{color:var(--accent2);display:inline-block;animation:hop 2s infinite}.nav-links{display:flex;flex-wrap:wrap;gap:22px;color:var(--muted);font-size:.92rem}.nav-links a{transition:color .25s,text-shadow .25s}.nav-links a:hover{color:var(--text);text-shadow:0 0 15px #7c9cff88}\n.hero{padding:70px 0 44px;display:grid;grid-template-columns:.78fr 1.22fr;gap:42px;align-items:center;min-height:440px}.hero-copy{animation:arrive .9s cubic-bezier(.18,.8,.25,1) both}.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--accent2);font-size:.75rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.pulse{width:8px;height:8px;border-radius:50%;background:var(--accent2);box-shadow:0 0 18px #64e4c2bb;animation:pulse 1.8s infinite}h1{font-size:clamp(2.4rem,5.5vw,4.7rem);line-height:1.04;letter-spacing:-.065em;margin:18px 0}.gradient{background:linear-gradient(100deg,#eef3ff 15%,#9eb5ff 55%,#64e4c2 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sweep 5s ease-in-out infinite}.lead{max-width:620px;color:var(--muted);font-size:1.08rem}.hero-logo-wrap{justify-self:center;width:min(250px,100%);aspect-ratio:1;display:grid;place-items:center;padding:24px;border:1px solid var(--line);border-radius:30px;background:linear-gradient(145deg,rgba(26,40,69,.9),rgba(15,24,42,.85));box-shadow:0 25px 75px #0003;animation:float 6s ease-in-out infinite;position:relative;overflow:hidden}.hero-logo-wrap::after{content:\"\";position:absolute;inset:-1px;border:1px solid #64e4c244;border-radius:inherit;pointer-events:none}.hero-logo-wrap img{position:relative;z-index:1;max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 15px 26px #0002)}\n.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.btn{display:inline-flex;align-items:center;gap:9px;padding:11px 16px;border:1px solid var(--line);border-radius:12px;font-weight:750;transition:transform .25s,border-color .25s,box-shadow .25s;background:rgba(17,27,48,.55)}.btn.primary{background:linear-gradient(120deg,var(--accent),var(--accent2));color:#091323;border:0}.btn:hover{transform:translateY(-4px);border-color:#64e4c288;box-shadow:0 10px 28px #7c9cff24}\n.content-section{padding:26px 0 54px}.section-heading{margin-bottom:22px}.section-heading .eyebrow{margin-bottom:8px}h2{font-size:clamp(1.65rem,3.5vw,2.35rem);line-height:1.15;letter-spacing:-.045em;margin:0}.intro{max-width:760px;color:var(--muted);margin:12px 0 0}.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.fact{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:20px;transition:transform .3s,border-color .3s,box-shadow .3s}.fact:hover{transform:translateY(-6px);border-color:#64e4c266;box-shadow:0 18px 45px #0002}.fact small{display:block;color:var(--muted);margin-bottom:6px}.fact strong{font-size:1.03rem}.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.photo{padding:10px;background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:transform .35s,border-color .3s,box-shadow .3s}.photo:hover{transform:translateY(-6px);border-color:#7c9cff77;box-shadow:0 20px 45px #0003}.photo img{display:block;width:100%;height:300px;object-fit:cover;border-radius:13px;background:#16213a;transition:transform .7s}.photo:hover img{transform:scale(1.025)}.photo figcaption{padding:12px 7px 5px;color:var(--muted);font-size:.92rem}.feature-banner{padding:26px 28px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(120deg,#7c9cff1c,#64e4c20d);margin-top:20px}.feature-banner p{color:var(--muted);margin:8px 0 0}.source-link{display:inline-flex;margin-top:13px;color:var(--accent2);font-weight:750}.source-link:hover{text-decoration:underline}footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:.9rem;margin-top:18px}footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.reveal{opacity:0;transform:translateY(23px);transition:opacity .7s,transform .7s}.reveal.is-visible{opacity:1;transform:translateY(0)}\n@keyframes arrive{from{opacity:0;transform:translateY(25px);filter:blur(5px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}@keyframes sweep{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}@keyframes pulse{50%{box-shadow:0 0 0 8px #64e4c200,0 0 26px #64e4c2}}@keyframes hop{50%{transform:translateY(-3px)}}\n@media(max-width:760px){nav{align-items:flex-start;flex-direction:column;justify-content:center;padding:13px 0;gap:9px}.nav-links{gap:15px}.hero{grid-template-columns:1fr;gap:26px;padding-top:48px}.hero-logo-wrap{grid-row:1;width:170px;border-radius:24px}.hero-copy{grid-row:2}.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery{grid-template-columns:1fr}.photo img{height:250px}.content-section{padding-bottom:40px}}\n@media(max-width:420px){.facts{grid-template-columns:1fr}.wrap{width:min(var(--max),calc(100% - 28px))}}\n@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1!important;transform:none!important}#particle-canvas{display:none!important}}\n</style>\n</head>\n<body>\n\n<div class=\"scroll-progress\" id=\"scrollProgress\" aria-hidden=\"true\"></div><canvas id=\"particle-canvas\" aria-hidden=\"true\"></canvas>\n<header><nav class=\"wrap\" aria-label=\"Main navigation\"><a class=\"brand\" href=\"#portfolio-home\">Gourab<span>.</span></a><div class=\"nav-links\"><a href=\"#portfolio-home\">Portfolio Home</a><a href=\"#portfolio-dec\">Dhemaji Engineering College</a></div></nav></header>\n\n<main class=\"wrap\">\n<section class=\"hero\" aria-labelledby=\"page-title\">\n  <div class=\"hero-copy\">\n    <div class=\"eyebrow\"><span class=\"pulse\"></span> School · Golaghat, Assam</div>\n    <h1 id=\"page-title\"><span class=\"gradient\">Jawahar Navodaya Vidyalaya</span><br>Golaghat</h1>\n    <p class=\"lead\">A school in Sensowa No. 2, near Chinatolly, in Golaghat district of Assam.</p>\n    <div class=\"actions\"><a class=\"btn primary\" href=\"https://navodaya.gov.in/nvs/nvs-school/GOLAGHAT/en/\" target=\"_blank\" rel=\"noopener noreferrer\">School website ↗</a><a class=\"btn\" href=\"https://saras.cbse.gov.in/SARAS/AffiliatedList/AfflicationDetails/240005\" target=\"_blank\" rel=\"noopener noreferrer\">CBSE listing ↗</a></div>\n  </div>\n  <div class=\"hero-logo-wrap\"><img src=\"https://jnvidyalaya.co.in/img/logo.png\" alt=\"Navodaya Vidyalaya Samiti emblem\" referrerpolicy=\"no-referrer\"></div>\n</section>\n<section class=\"content-section\" aria-labelledby=\"about-title\">\n  <div class=\"section-heading\"><div class=\"eyebrow\">About the school</div><h2 id=\"about-title\">A place for learning and growth</h2><p class=\"intro\">Jawahar Navodaya Vidyalaya, Golaghat is listed by the Central Board of Secondary Education (CBSE) as a senior-secondary school in Assam. The school is located at Sensowa No. 2, Post Office Chinatolly, Golaghat district.</p></div>\n  <div class=\"facts\">\n    <div class=\"fact\"><small>District</small><strong>Golaghat</strong></div>\n    <div class=\"fact\"><small>State</small><strong>Assam, India</strong></div>\n    <div class=\"fact\"><small>School level</small><strong>Senior Secondary</strong></div>\n    <div class=\"fact\"><small>Year of foundation</small><strong>1995</strong></div>\n  </div>\n</section>\n<section class=\"content-section\" aria-labelledby=\"gallery-title\">\n  <div class=\"section-heading\"><div class=\"eyebrow\">Photo gallery</div><h2 id=\"gallery-title\">A glimpse of JNV Golaghat</h2><p class=\"intro\">School photographs from publicly available school-directory listings.</p></div>\n  <div class=\"gallery\">\n    <figure class=\"photo\"><img src=\"https://storage.googleapis.com/cdn-edustoke/mysql_images/full/d1f361b9-5928-400d-bfed-a8cc7f2e6d6f_b7547baa.webp\" alt=\"Entrance sign at Jawahar Navodaya Vidyalaya, Golaghat\" loading=\"lazy\" referrerpolicy=\"no-referrer\"><figcaption>School entrance at Chinatolly, Golaghat.</figcaption></figure>\n    <figure class=\"photo\"><img src=\"https://cache.careers360.mobi/media/schools/social-media/media-gallery/861/2023/4/15/Others.png\" alt=\"Students gathered in front of a Jawahar Navodaya Vidyalaya building\" loading=\"lazy\" referrerpolicy=\"no-referrer\"><figcaption>Students gathered at the school premises.</figcaption></figure>\n    <figure class=\"photo\"><img src=\"https://preprimaryschools.com/assets/uploads/school/home/10062022021637_799132_Jawahar-Navodaya-Vidyalaya-Golaghat-%282%29.PNG\" alt=\"Students at a school event at Jawahar Navodaya Vidyalaya, Golaghat\" loading=\"lazy\" referrerpolicy=\"no-referrer\"><figcaption>School community and student activities.</figcaption></figure>\n    <figure class=\"photo\"><img src=\"https://jnvidyalaya.co.in/img/logo.png\" alt=\"Navodaya Vidyalaya Samiti emblem\" loading=\"lazy\" referrerpolicy=\"no-referrer\" style=\"object-fit:contain;background:#fff;padding:24px\"><figcaption>Navodaya Vidyalaya Samiti emblem.</figcaption></figure>\n  </div>\n  <div class=\"feature-banner\"><h2>School details</h2><p>CBSE affiliation number: 240005 · Postal code: 785621 · School type: Jawahar Navodaya Vidyalaya (JNV).</p><a class=\"source-link\" href=\"https://saras.cbse.gov.in/SARAS/AffiliatedList/AfflicationDetails/240005\" target=\"_blank\" rel=\"noopener noreferrer\">View official CBSE school record ↗</a></div>\n</section>\n</main>\n<footer><div class=\"wrap\"><span>Jawahar Navodaya Vidyalaya · Golaghat, Assam</span><a href=\"#portfolio-home\">← Return to Gourab’s portfolio</a></div></footer>\n<script>\n(()=>{const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;const bar=document.getElementById('scrollProgress');function progress(){const max=document.documentElement.scrollHeight-innerHeight;bar.style.width=(max>0?scrollY/max*100:0)+'%'}addEventListener('scroll',progress,{passive:true});progress();const items=document.querySelectorAll('.content-section,.fact,.photo,.feature-banner');if(!reduced&&'IntersectionObserver'in window){items.forEach(x=>x.classList.add('reveal'));const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target)}}),{threshold:.12});items.forEach(x=>obs.observe(x))}const c=document.getElementById('particle-canvas'),ctx=c.getContext('2d');if(!reduced&&ctx){let w,h,ps=[],raf;const resize=()=>{const d=Math.min(devicePixelRatio||1,1.6);w=innerWidth;h=innerHeight;c.width=w*d;c.height=h*d;c.style.width=w+'px';c.style.height=h+'px';ctx.setTransform(d,0,0,d,0,0);ps=Array.from({length:Math.min(70,Math.max(28,Math.floor(w/18)))},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:Math.random()*1.5+.5,p:Math.random()*6.2}))};const draw=()=>{ctx.clearRect(0,0,w,h);for(let i=0;i<ps.length;i++){const a=ps[i];a.x+=a.vx;a.y+=a.vy;a.p+=.012;if(a.x<0)a.x=w;if(a.x>w)a.x=0;if(a.y<0)a.y=h;if(a.y>h)a.y=0;ctx.beginPath();ctx.arc(a.x,a.y,a.r,0,Math.PI*2);ctx.fillStyle=`rgba(151,186,255,${.35+(Math.sin(a.p)+1)*.16})`;ctx.fill();for(let j=i+1;j<ps.length;j++){const b=ps[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);if(d<105){ctx.strokeStyle=`rgba(100,228,194,${(1-d/105)*.13})`;ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}}}raf=requestAnimationFrame(draw)};resize();draw();addEventListener('resize',resize,{passive:true});document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelAnimationFrame(raf);else draw()})}})();\n<\/script>\n<script>\n(function(){\n  function reportHeight(){\n    var h=Math.max(document.documentElement.scrollHeight,document.body?document.body.scrollHeight:0,window.innerHeight||0);\n    if(parent!==window) parent.postMessage({type:'gourab-single-file-height',height:h},'*');\n  }\n  document.addEventListener('click',function(e){\n    var a=e.target && e.target.closest ? e.target.closest('a[href^=\"#portfolio-\"]') : null;\n    if(!a) return;\n    e.preventDefault();\n    var route=a.getAttribute('href');\n    if(parent!==window && typeof parent.showPage==='function'){\n      parent.showPage(route==='#portfolio-home'?'home':route==='#portfolio-jnv'?'jnv':'dec');\n    }\n  });\n  window.addEventListener('load',function(){reportHeight();setTimeout(reportHeight,250);setTimeout(reportHeight,900);});\n  window.addEventListener('resize',reportHeight,{passive:true});\n  if('ResizeObserver' in window){new ResizeObserver(reportHeight).observe(document.documentElement); if(document.body)new ResizeObserver(reportHeight).observe(document.body);}\n  document.addEventListener('load',function(e){if(e.target && e.target.tagName==='IMG')reportHeight();},true);\n})();\n<\/script>\n</body></html>", dec: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta name=\"theme-color\" content=\"#0b1120\">\n<title>Dhemaji Engineering College | Gourab Mech</title><meta name=\"description\" content=\"About and photographs of Dhemaji Engineering College, Assam.\">\n<style>\n:root{--bg:#0b1120;--surface:rgba(17,27,48,.78);--text:#eef3ff;--muted:#a7b4cc;--line:rgba(180,199,231,.16);--accent:#7c9cff;--accent2:#64e4c2;--max:1080px}\n*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;isolation:isolate;overflow-x:hidden;color:var(--text);font:16px/1.7 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,\"Segoe UI\",sans-serif;background:radial-gradient(ellipse at 10% 0%,rgba(70,101,190,.22),transparent 42%),radial-gradient(ellipse at 95% 35%,rgba(40,190,161,.12),transparent 35%),var(--bg)}\na{color:inherit;text-decoration:none}a:focus-visible{outline:3px solid var(--accent2);outline-offset:4px}.wrap{width:min(var(--max),calc(100% - 40px));margin-inline:auto}\n#particle-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.62}.scroll-progress{position:fixed;top:0;left:0;width:0;height:3px;z-index:100;background:linear-gradient(90deg,var(--accent),#b18cff,var(--accent2));box-shadow:0 0 16px #64e4c288}header,main,footer{position:relative;z-index:1}header{position:sticky;top:0;z-index:10;background:rgba(11,17,32,.79);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{font-size:1.1rem;font-weight:850;letter-spacing:-.04em}.brand span{color:var(--accent2);display:inline-block;animation:hop 2s infinite}.nav-links{display:flex;flex-wrap:wrap;gap:22px;color:var(--muted);font-size:.92rem}.nav-links a{transition:color .25s,text-shadow .25s}.nav-links a:hover{color:var(--text);text-shadow:0 0 15px #7c9cff88}\n.hero{padding:70px 0 44px;display:grid;grid-template-columns:.78fr 1.22fr;gap:42px;align-items:center;min-height:440px}.hero-copy{animation:arrive .9s cubic-bezier(.18,.8,.25,1) both}.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--accent2);font-size:.75rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.pulse{width:8px;height:8px;border-radius:50%;background:var(--accent2);box-shadow:0 0 18px #64e4c2bb;animation:pulse 1.8s infinite}h1{font-size:clamp(2.4rem,5.5vw,4.7rem);line-height:1.04;letter-spacing:-.065em;margin:18px 0}.gradient{background:linear-gradient(100deg,#eef3ff 15%,#9eb5ff 55%,#64e4c2 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sweep 5s ease-in-out infinite}.lead{max-width:620px;color:var(--muted);font-size:1.08rem}.hero-logo-wrap{justify-self:center;width:min(250px,100%);aspect-ratio:1;display:grid;place-items:center;padding:24px;border:1px solid var(--line);border-radius:30px;background:linear-gradient(145deg,rgba(26,40,69,.9),rgba(15,24,42,.85));box-shadow:0 25px 75px #0003;animation:float 6s ease-in-out infinite;position:relative;overflow:hidden}.hero-logo-wrap::after{content:\"\";position:absolute;inset:-1px;border:1px solid #64e4c244;border-radius:inherit;pointer-events:none}.hero-logo-wrap img{position:relative;z-index:1;max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 15px 26px #0002)}\n.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.btn{display:inline-flex;align-items:center;gap:9px;padding:11px 16px;border:1px solid var(--line);border-radius:12px;font-weight:750;transition:transform .25s,border-color .25s,box-shadow .25s;background:rgba(17,27,48,.55)}.btn.primary{background:linear-gradient(120deg,var(--accent),var(--accent2));color:#091323;border:0}.btn:hover{transform:translateY(-4px);border-color:#64e4c288;box-shadow:0 10px 28px #7c9cff24}\n.content-section{padding:26px 0 54px}.section-heading{margin-bottom:22px}.section-heading .eyebrow{margin-bottom:8px}h2{font-size:clamp(1.65rem,3.5vw,2.35rem);line-height:1.15;letter-spacing:-.045em;margin:0}.intro{max-width:760px;color:var(--muted);margin:12px 0 0}.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.fact{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:20px;transition:transform .3s,border-color .3s,box-shadow .3s}.fact:hover{transform:translateY(-6px);border-color:#64e4c266;box-shadow:0 18px 45px #0002}.fact small{display:block;color:var(--muted);margin-bottom:6px}.fact strong{font-size:1.03rem}.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.photo{padding:10px;background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:transform .35s,border-color .3s,box-shadow .3s}.photo:hover{transform:translateY(-6px);border-color:#7c9cff77;box-shadow:0 20px 45px #0003}.photo img{display:block;width:100%;height:300px;object-fit:cover;border-radius:13px;background:#16213a;transition:transform .7s}.photo:hover img{transform:scale(1.025)}.photo figcaption{padding:12px 7px 5px;color:var(--muted);font-size:.92rem}.feature-banner{padding:26px 28px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(120deg,#7c9cff1c,#64e4c20d);margin-top:20px}.feature-banner p{color:var(--muted);margin:8px 0 0}.source-link{display:inline-flex;margin-top:13px;color:var(--accent2);font-weight:750}.source-link:hover{text-decoration:underline}footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:.9rem;margin-top:18px}footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.reveal{opacity:0;transform:translateY(23px);transition:opacity .7s,transform .7s}.reveal.is-visible{opacity:1;transform:translateY(0)}\n@keyframes arrive{from{opacity:0;transform:translateY(25px);filter:blur(5px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}@keyframes sweep{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}@keyframes pulse{50%{box-shadow:0 0 0 8px #64e4c200,0 0 26px #64e4c2}}@keyframes hop{50%{transform:translateY(-3px)}}\n@media(max-width:760px){nav{align-items:flex-start;flex-direction:column;justify-content:center;padding:13px 0;gap:9px}.nav-links{gap:15px}.hero{grid-template-columns:1fr;gap:26px;padding-top:48px}.hero-logo-wrap{grid-row:1;width:170px;border-radius:24px}.hero-copy{grid-row:2}.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery{grid-template-columns:1fr}.photo img{height:250px}.content-section{padding-bottom:40px}}\n@media(max-width:420px){.facts{grid-template-columns:1fr}.wrap{width:min(var(--max),calc(100% - 28px))}}\n@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1!important;transform:none!important}#particle-canvas{display:none!important}}\n</style>\n</head>\n<body>\n\n<div class=\"scroll-progress\" id=\"scrollProgress\" aria-hidden=\"true\"></div><canvas id=\"particle-canvas\" aria-hidden=\"true\"></canvas>\n<header><nav class=\"wrap\" aria-label=\"Main navigation\"><a class=\"brand\" href=\"#portfolio-home\">Gourab<span>.</span></a><div class=\"nav-links\"><a href=\"#portfolio-home\">Portfolio Home</a><a href=\"#portfolio-jnv\">Jawahar Navodaya Vidyalaya</a></div></nav></header>\n\n<main class=\"wrap\">\n<section class=\"hero\" aria-labelledby=\"page-title\">\n  <div class=\"hero-copy\">\n    <div class=\"eyebrow\"><span class=\"pulse\"></span> Engineering · Assam, India</div>\n    <h1 id=\"page-title\"><span class=\"gradient\">Dhemaji Engineering College</span></h1>\n    <p class=\"lead\">A Government of Assam engineering institute focused on undergraduate technical education, innovation and practical learning.</p>\n    <div class=\"actions\"><a class=\"btn primary\" href=\"https://dec.ac.in/\" target=\"_blank\" rel=\"noopener noreferrer\">Official college website ↗</a><a class=\"btn\" href=\"https://dec.ac.in/about\" target=\"_blank\" rel=\"noopener noreferrer\">History & vision ↗</a></div>\n  </div>\n  <div class=\"hero-logo-wrap\"><img src=\"https://dec.ac.in/uploads/images/dec_logo.png\" alt=\"Dhemaji Engineering College emblem\" referrerpolicy=\"no-referrer\"></div>\n</section>\n<section class=\"content-section\" aria-labelledby=\"about-title\">\n  <div class=\"section-heading\"><div class=\"eyebrow\">About the institution</div><h2 id=\"about-title\">Building a foundation for engineers</h2><p class=\"intro\">Dhemaji Engineering College (DEC) was established by the Government of Assam, with academic programmes beginning in the 2020–21 session. The college is affiliated with Assam Science and Technology University (ASTU) and approved by the All India Council for Technical Education (AICTE).</p></div>\n  <div class=\"facts\">\n    <div class=\"fact\"><small>Established</small><strong>2020</strong></div>\n    <div class=\"fact\"><small>Location</small><strong>Tekjuri, Dhemaji</strong></div>\n    <div class=\"fact\"><small>Affiliation</small><strong>ASTU</strong></div>\n    <div class=\"fact\"><small>Approval</small><strong>AICTE</strong></div>\n  </div>\n  <div class=\"feature-banner\"><h2>Academic programmes</h2><p>Undergraduate B.Tech programmes are offered in Computer Science and Engineering, Civil Engineering, and Mechanical Engineering. Basic Science and Humanities subjects support students' core academic foundation.</p></div>\n</section>\n<section class=\"content-section\" aria-labelledby=\"gallery-title\">\n  <div class=\"section-heading\"><div class=\"eyebrow\">Campus gallery</div><h2 id=\"gallery-title\">A glimpse of Dhemaji Engineering College</h2><p class=\"intro\">Selected images from the college’s website and public college coverage.</p></div>\n  <div class=\"gallery\">\n    <figure class=\"photo\"><img src=\"https://dec.ac.in/gallery/g8.jpeg\" alt=\"Academic building at Dhemaji Engineering College\" loading=\"lazy\" referrerpolicy=\"no-referrer\"><figcaption>An academic or administrative building on the DEC campus.</figcaption></figure>\n    <figure class=\"photo\"><img src=\"https://assamtribune.com/h-upload/images/AQ8YcwpBlF80UkiwJSfrCT0bLZhtfEEE.jpg\" alt=\"Entrance gate of Dhemaji Engineering College\" loading=\"lazy\" referrerpolicy=\"no-referrer\"><figcaption>Entrance gate of Dhemaji Engineering College.</figcaption></figure>\n    <figure class=\"photo\"><img src=\"https://dec.ac.in/uploads/gallery/1788090209_93689.jpg\" alt=\"An event being held at Dhemaji Engineering College\" loading=\"lazy\" referrerpolicy=\"no-referrer\"><figcaption>College event and academic community.</figcaption></figure>\n    <figure class=\"photo\"><img src=\"https://dec.ac.in/uploads/images/dec_logo.png\" alt=\"Dhemaji Engineering College emblem\" loading=\"lazy\" referrerpolicy=\"no-referrer\" style=\"object-fit:contain;background:#fff;padding:24px\"><figcaption>Official Dhemaji Engineering College emblem.</figcaption></figure>\n  </div>\n  <div class=\"feature-banner\"><h2>Visit DEC online</h2><p>For current notices, admission information, campus-life updates and contact details, use the college’s official website.</p><a class=\"source-link\" href=\"https://dec.ac.in/\" target=\"_blank\" rel=\"noopener noreferrer\">Visit dec.ac.in ↗</a></div>\n</section>\n</main>\n<footer><div class=\"wrap\"><span>Dhemaji Engineering College · Government of Assam</span><a href=\"#portfolio-home\">← Return to Gourab’s portfolio</a></div></footer>\n<script>\n(()=>{const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;const bar=document.getElementById('scrollProgress');function progress(){const max=document.documentElement.scrollHeight-innerHeight;bar.style.width=(max>0?scrollY/max*100:0)+'%'}addEventListener('scroll',progress,{passive:true});progress();const items=document.querySelectorAll('.content-section,.fact,.photo,.feature-banner');if(!reduced&&'IntersectionObserver'in window){items.forEach(x=>x.classList.add('reveal'));const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target)}}),{threshold:.12});items.forEach(x=>obs.observe(x))}const c=document.getElementById('particle-canvas'),ctx=c.getContext('2d');if(!reduced&&ctx){let w,h,ps=[],raf;const resize=()=>{const d=Math.min(devicePixelRatio||1,1.6);w=innerWidth;h=innerHeight;c.width=w*d;c.height=h*d;c.style.width=w+'px';c.style.height=h+'px';ctx.setTransform(d,0,0,d,0,0);ps=Array.from({length:Math.min(70,Math.max(28,Math.floor(w/18)))},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:Math.random()*1.5+.5,p:Math.random()*6.2}))};const draw=()=>{ctx.clearRect(0,0,w,h);for(let i=0;i<ps.length;i++){const a=ps[i];a.x+=a.vx;a.y+=a.vy;a.p+=.012;if(a.x<0)a.x=w;if(a.x>w)a.x=0;if(a.y<0)a.y=h;if(a.y>h)a.y=0;ctx.beginPath();ctx.arc(a.x,a.y,a.r,0,Math.PI*2);ctx.fillStyle=`rgba(151,186,255,${.35+(Math.sin(a.p)+1)*.16})`;ctx.fill();for(let j=i+1;j<ps.length;j++){const b=ps[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);if(d<105){ctx.strokeStyle=`rgba(100,228,194,${(1-d/105)*.13})`;ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}}}raf=requestAnimationFrame(draw)};resize();draw();addEventListener('resize',resize,{passive:true});document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelAnimationFrame(raf);else draw()})}})();\n<\/script>\n<script>\n(function(){\n  function reportHeight(){\n    var h=Math.max(document.documentElement.scrollHeight,document.body?document.body.scrollHeight:0,window.innerHeight||0);\n    if(parent!==window) parent.postMessage({type:'gourab-single-file-height',height:h},'*');\n  }\n  document.addEventListener('click',function(e){\n    var a=e.target && e.target.closest ? e.target.closest('a[href^=\"#portfolio-\"]') : null;\n    if(!a) return;\n    e.preventDefault();\n    var route=a.getAttribute('href');\n    if(parent!==window && typeof parent.showPage==='function'){\n      parent.showPage(route==='#portfolio-home'?'home':route==='#portfolio-jnv'?'jnv':'dec');\n    }\n  });\n  window.addEventListener('load',function(){reportHeight();setTimeout(reportHeight,250);setTimeout(reportHeight,900);});\n  window.addEventListener('resize',reportHeight,{passive:true});\n  if('ResizeObserver' in window){new ResizeObserver(reportHeight).observe(document.documentElement); if(document.body)new ResizeObserver(reportHeight).observe(document.body);}\n  document.addEventListener('load',function(e){if(e.target && e.target.tagName==='IMG')reportHeight();},true);\n})();\n<\/script>\n</body></html>" };
+      let currentPage = 'home';
+
+      window.showPage = function(page) {
+        if (page !== 'jnv' && page !== 'dec') page = 'home';
+        currentPage = page;
+        const isHome = page === 'home';
+        homeView.hidden = !isHome;
+        institutionView.hidden = isHome;
+        document.getElementById('backToTop')?.classList.remove('visible');
+        if (!isHome) {
+          frame.style.height = Math.max(window.innerHeight, 900) + 'px';
+          frame.srcdoc = pages[page];
+          document.title = page === 'jnv' ? 'Jawahar Navodaya Vidyalaya | Gourab Mech' : 'Dhemaji Engineering College | Gourab Mech';
+        } else {
+          document.title = 'Gourab Mech | Portfolio';
+        }
+        window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      };
+
+      // Route education-card clicks to the corresponding embedded page.
+      document.addEventListener('click', event => {
+        const link = event.target.closest && event.target.closest('a[href^="#portfolio-"]');
+        if (!link) return;
+        const route = link.getAttribute('href');
+        if (route === '#portfolio-home' || route === '#portfolio-jnv' || route === '#portfolio-dec') {
+          event.preventDefault();
+          window.showPage(route === '#portfolio-home' ? 'home' : route === '#portfolio-jnv' ? 'jnv' : 'dec');
+        }
+      });
+
+      // Keep the iframe tall enough to show the embedded page without nested scrolling.
+      window.addEventListener('message', event => {
+        if (event.source !== frame.contentWindow || !event.data || event.data.type !== 'gourab-single-file-height') return;
+        const h = Number(event.data.height);
+        if (Number.isFinite(h) && h > 0) frame.style.height = Math.ceil(h + 8) + 'px';
+      });
+      frame.addEventListener('load', () => {
+        try {
+          const h = frame.contentDocument.documentElement.scrollHeight;
+          if (h > 0) frame.style.height = h + 'px';
+        } catch (_) { /* srcdoc height updates are also sent with postMessage */ }
+      });
+
+      // Support browser back/forward while keeping every page inside this file.
+      let restoringHistory = false;
+      window.addEventListener('popstate', () => {
+        const route = location.hash;
+        restoringHistory = true;
+        if (route === '#page-jnv') window.showPage('jnv');
+        else if (route === '#page-dec') window.showPage('dec');
+        else window.showPage('home');
+        restoringHistory = false;
+      });
+      const originalShowPage = window.showPage;
+      window.showPage = function(page) {
+        originalShowPage(page);
+        const hash = page === 'jnv' ? '#page-jnv' : page === 'dec' ? '#page-dec' : '#page-home';
+        if (!restoringHistory && location.hash !== hash) history.pushState({ page }, '', hash);
+      };
+      // The starting page is the main portfolio unless a page hash is supplied.
+      if (location.hash === '#page-jnv') window.showPage('jnv');
+      else if (location.hash === '#page-dec') window.showPage('dec');
+    })();
+  </script>
+
+</body>
+</html>
